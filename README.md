@@ -1,42 +1,20 @@
-# SNAPBACK: Setbacks Are Your Fuel
+# Snapback
 
-A 2D physics-platformer built in Godot 4 for the game dev hackathon.
+A 2d physics platfromer made in Godot 4 for our hackathon project.
 
-> **Theme**: *"Your downfall isn't wasted, it's stored energy."*
+The whole idea behind the game is that setbacks are your fuel. Your character gets pushed backwards by a hostile world, but that knockback distance is actually stored as tension in your meter. Whenever you press shift you snap forward with power proportional to how hard you got hit.
 
----
+Some gaps in the levels are way too wide to cross with just a normal jump so you have to deliberately jump into bumpers and enemies to charge up your dash and fly across. Your downfall isnt wasted, its literally your fuel.
 
-## The Concept
+There are 10 short levels, moving patrol enemies that you can bounce off of or dash through for extra points and gold coins scattered around to collect.
 
-In a hostile world, getting knocked backward is not a failure—it is your fuel:
-- **Tension Accumulation**: Getting hit by bumpers or patrol enemies flings you backward and fills your **Tension Meter** (0% to 100%).
-- **The Snapback**: Press `SHIFT` to discharge stored tension into an explosive forward dash.
-- **The Twist (Intentional Sacrifice)**: Certain chasms are impossible to clear with a standard jump. You must deliberately throw yourself into hazards to build the kinetic energy required to cross them.
+Controls
 
----
+A and D or arrow keys to move left and right.
+Space or W to jump.
+Shift or E to snapback dash.
+R to quick restart the level if you fall.
 
-## Features
+How to play
 
-- **10 Handcrafted Levels**: Pacing from introductory recoil lessons to high-altitude canyon leaps.
-- **Moving Patrol Bots**: Enemies pace platforms. Running into them charges tension; snapping through them destroys them for **+250 bonus points**.
-- **Point System**: Collect gold coins (+100 pts) and defeat enemies to maximize your run score.
-- **Game Feel**: Camera smoothing, impact flashes, and dynamic stretch-and-squash physics.
-
----
-
-## Controls
-
-| Action | Input |
-|---|---|
-| **Move** | `A` / `D` or `Arrow Keys` |
-| **Jump** | `Space` or `W` |
-| **Snapback Dash** | `Shift` or `E` |
-| **Quick Restart** | `R` |
-
----
-
-## How to Play
-
-1. Open **Godot 4**.
-2. Click **Import** and select `project.godot`.
-3. Press **`F5`** to launch the game.
+Download or clone the repo, open Godot 4, click import and select project.godot from the folder. Then just press F5 to run it.
