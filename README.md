@@ -1,5 +1,7 @@
 # Snapback
 
+![Snapback](assets/thumbnail.jpg)
+
 A 2d physics platfromer made in Godot 4 for our hackathon project.
 
 The whole idea behind the game is that setbacks are your fuel. Your character gets pushed backwards by a hostile world, but that knockback distance is actually stored as tension in your meter. Whenever you press shift you snap forward with power proportional to how hard you got hit.
