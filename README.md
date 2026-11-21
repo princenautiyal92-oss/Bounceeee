@@ -1,61 +1,42 @@
-# SNAPBACK (Godot 4 Engine Project)
+# SNAPBACK: Setbacks Are Your Fuel
 
-A clean 2D physics-platformer built directly for **Godot 4** centered around the hackathon theme: **"Setbacks are your fuel"**.
+A 2D physics-platformer built in Godot 4 for the game dev hackathon.
+
+> **Theme**: *"Your downfall isn't wasted, it's stored energy."*
 
 ---
 
-## What's in the Game
+## The Concept
 
-1. **Recoil = Tension Fuel**: 
-   - Hazards (bumpers and moving enemies) knock you backward and fill your **Tension Bar**.
-2. **The Snapback Dash (`SHIFT` / `E`)**: 
-   - Converts stored tension into an explosive forward dash that launches you across bottomless chasms.
-3. **Moving Enemies**:
-   - Purple patrol bots that pace back and forth.
-   - If they bump into you normally, they knock you back and charge your Tension.
-   - If you **Snap** through them, you defeat them for **+250 bonus points**!
-4. **Point System**:
-   - Collectible gold coins scattered across platforms and floating over chasms (+100 points each).
-   - Defeating enemies with Snap (+250 points).
-   - Real-time score displayed in the HUD.
-5. **10 Complete Levels**:
-   - Progression from basic bumper tutorials to moving enemy gauntlets and canyon leaps.
+In a hostile world, getting knocked backward is not a failure—it is your fuel:
+- **Tension Accumulation**: Getting hit by bumpers or patrol enemies flings you backward and fills your **Tension Meter** (0% to 100%).
+- **The Snapback**: Press `SHIFT` to discharge stored tension into an explosive forward dash.
+- **The Twist (Intentional Sacrifice)**: Certain chasms are impossible to clear with a standard jump. You must deliberately throw yourself into hazards to build the kinetic energy required to cross them.
+
+---
+
+## Features
+
+- **10 Handcrafted Levels**: Pacing from introductory recoil lessons to high-altitude canyon leaps.
+- **Moving Patrol Bots**: Enemies pace platforms. Running into them charges tension; snapping through them destroys them for **+250 bonus points**.
+- **Point System**: Collect gold coins (+100 pts) and defeat enemies to maximize your run score.
+- **Game Feel**: Camera smoothing, impact flashes, and dynamic stretch-and-squash physics.
 
 ---
 
 ## Controls
 
-- **Move Left / Right**: `A` / `D` or `Arrow Keys`
-- **Jump**: `Space` or `W`
-- **Snapback Dash**: `Shift` or `E`
-- **Quick Restart**: `R`
+| Action | Input |
+|---|---|
+| **Move** | `A` / `D` or `Arrow Keys` |
+| **Jump** | `Space` or `W` |
+| **Snapback Dash** | `Shift` or `E` |
+| **Quick Restart** | `R` |
 
 ---
 
-## Project Structure
+## How to Play
 
-```
-gamedev/
-├── project.godot               # Godot 4 configuration (starts at level_1.tscn)
-├── assets/
-│   └── sprites/                # 6 simple 32x32 retro pixel sprites
-│       ├── player.png          # Blue player core
-│       ├── ground.png          # Dark platform tile
-│       ├── bumper.png          # Red spring bumper
-│       ├── goal.png            # Green goal flag
-│       ├── enemy.png           # Purple patrol bot
-│       └── coin.png            # Shiny gold coin
-├── scenes/
-│   ├── player.tscn             # CharacterBody2D + Camera2D + Tension & Score HUD
-│   ├── bumper.tscn             # Area2D knockback hazard
-│   ├── enemy.tscn              # Moving patrol enemy
-│   ├── coin.tscn               # Area2D point collectible
-│   ├── goal.tscn               # Level transition flag
-│   └── levels/                 # 10 playable levels (level_1.tscn to level_10.tscn)
-└── scripts/
-    ├── player.gd               # Movement, tension, snap, and score tracking
-    ├── bumper.gd               # Knockback impulse & tension gain
-    ├── enemy.gd                # Left-right patrol movement & interaction
-    ├── coin.gd                 # Point collection
-    └── goal.gd                 # Next level loader
-```
+1. Open **Godot 4**.
+2. Click **Import** and select `project.godot`.
+3. Press **`F5`** to launch the game.
