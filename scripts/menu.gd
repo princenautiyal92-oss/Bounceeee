@@ -1,6 +1,7 @@
 extends Control
 
 @onready var start_button: Button = $CenterContainer/GlassPanel/Margin/VBoxContainer/StartButton
+@onready var level_select_button: Button = $CenterContainer/GlassPanel/Margin/VBoxContainer/LevelSelectButton
 @onready var how_button: Button = $CenterContainer/GlassPanel/Margin/VBoxContainer/HowButton
 @onready var quit_button: Button = $CenterContainer/GlassPanel/Margin/VBoxContainer/QuitButton
 @onready var how_panel: PanelContainer = $HowToPlayModal
@@ -8,6 +9,7 @@ extends Control
 
 func _ready() -> void:
 	start_button.pressed.connect(_on_start_pressed)
+	level_select_button.pressed.connect(_on_level_select_pressed)
 	how_button.pressed.connect(_on_how_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
 	close_how_button.pressed.connect(_on_close_how_pressed)
@@ -17,6 +19,9 @@ func _ready() -> void:
 func _on_start_pressed() -> void:
 	Player.score = 0
 	get_tree().change_scene_to_file("res://scenes/levels/level_1.tscn")
+
+func _on_level_select_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/level_select.tscn")
 
 func _on_how_pressed() -> void:
 	how_panel.visible = true

@@ -15,6 +15,17 @@ size = Vector2(380, 48)
 
 [node name="Level4" type="Node2D"]
 
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -10
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07, 0.11, 0.2, 1)
+
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Margin" type="MarginContainer" parent="UI"]
