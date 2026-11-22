@@ -6,6 +6,7 @@ const JUMP_VELOCITY = -440.0
 const GRAVITY = 1100.0
 
 static var score: int = 0
+static var max_unlocked_level: int = 1
 
 var tension: float = 0.0
 const MAX_TENSION: float = 100.0
@@ -19,6 +20,59 @@ var flash_timer: float = 0.0
 @onready var tension_bar: ProgressBar = get_node_or_null("HUD/MarginContainer/VBoxContainer/TensionBar")
 @onready var tension_label: Label = get_node_or_null("HUD/MarginContainer/VBoxContainer/TensionLabel")
 @onready var score_label: Label = get_node_or_null("HUD/MarginContainer/VBoxContainer/ScoreLabel")
+
+# Pause Menu references
+@onready var pause_modal: Control = get_node_or_null("HUD/PauseModal")
+@onready var resume_btn: Button = get_node_or_null("HUD/PauseModal/CenterContainer/GlassPanel/Margin/VBoxContainer/ResumeButton")
+@onready var restart_btn: Button = get_node_or_null("HUD/PauseModal/CenterContainer/GlassPanel/Margin/VBoxContainer/RestartButton")
+@onready var lvl_select_btn: Button = get_node_or_null("HUD/PauseModal/CenterContainer/GlassPanel/Margin/VBoxContainer/LevelSelectButton")
+@onready var menu_btn: Button = get_node_or_null("HUD/PauseModal/CenterContainer/GlassPanel/Margin/VBoxContainer/MenuButton")
+
+static func unlock_next_level(current_lvl: int) -> void:
+	if current_lvl >= max_unlocked_level:
+		max_unlocked_level = clampi(current_lvl + 1, 1, 10)
+
+func _ready() -> void:
+	if pause_modal:
+		pause_modal.visible = false
+	if resume_btn:
+		resume_btn.pressed.connect(_on_resume_pressed)
+	if restart_btn:
+		restart_btn.pressed.connect(_on_restart_pressed)
+	if lvl_select_btn:
+		lvl_select_btn.pressed.connect(_on_lvl_select_pressed)
+	if menu_btn:
+		menu_btn.pressed.connect(_on_menu_pressed)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.keycode == KEY_ESCAPE or event.keycode == KEY_P:
+			toggle_pause()
+
+func toggle_pause() -> void:
+	var new_paused = not get_tree().paused
+	get_tree().paused = new_paused
+	if pause_modal:
+		pause_modal.visible = new_paused
+		if new_paused and resume_btn:
+			resume_btn.grab_focus()
+
+func _on_resume_pressed() -> void:
+	get_tree().paused = false
+	if pause_modal:
+		pause_modal.visible = false
+
+func _on_restart_pressed() -> void:
+	get_tree().paused = false
+	get_tree().reload_current_scene()
+
+func _on_lvl_select_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://scenes/level_select.tscn")
+
+func _on_menu_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://scenes/menu.tscn")
 
 func _physics_process(delta: float) -> void:
 	# 1. Gravity
@@ -112,7 +166,7 @@ func _physics_process(delta: float) -> void:
 		score_label.text = "SCORE: %d" % score
 
 	# Pit fall or manual reset
-	if position.y > 750.0 or Input.is_physical_key_pressed(KEY_R):
+	if position.y > 750.0 or (Input.is_physical_key_pressed(KEY_R) and not get_tree().paused):
 		get_tree().reload_current_scene()
 
 func execute_snap() -> void:

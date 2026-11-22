@@ -6,13 +6,24 @@ extends Control
 func _ready() -> void:
 	back_button.pressed.connect(_on_back_pressed)
 	
-	# Connect all level buttons
 	for child in grid_container.get_children():
 		if child is Button:
-			child.pressed.connect(_on_level_button_pressed.bind(child.get_meta("level_num", 1)))
-	
-	if grid_container.get_child_count() > 0:
-		grid_container.get_child(0).grab_focus()
+			var lvl_num = child.get_meta("level_num", 1)
+			if lvl_num <= Player.max_unlocked_level:
+				child.disabled = false
+				child.text = "%02d" % lvl_num
+				child.modulate = Color.WHITE
+				child.pressed.connect(_on_level_button_pressed.bind(lvl_num))
+			else:
+				child.disabled = true
+				child.text = "🔒"
+				child.modulate = Color(0.45, 0.5, 0.6, 0.5)
+
+	# Focus first unlocked button
+	for child in grid_container.get_children():
+		if child is Button and not child.disabled:
+			child.grab_focus()
+			break
 
 func _on_level_button_pressed(level_num: int) -> void:
 	Player.score = 0
