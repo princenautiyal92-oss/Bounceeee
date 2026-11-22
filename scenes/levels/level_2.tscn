@@ -10,13 +10,16 @@
 [ext_resource type="PackedScene" path="res://scenes/enemy_flyer.tscn" id="8_flyer"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1"]
-size = Vector2(380, 48)
+size = Vector2(360, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p2"]
-size = Vector2(460, 48)
+size = Vector2(380, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p3"]
-size = Vector2(540, 48)
+size = Vector2(380, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p4"]
+size = Vector2(460, 48)
 
 [node name="Level2" type="Node2D"]
 
@@ -48,76 +51,90 @@ layout_mode = 2
 [node name="Title" type="Label" parent="UI/Margin/VBox"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
-text = "Level 2: The Wide Gap - You cannot jump across normally; take the hit on purpose!"
+text = "Level 2: Terraced Cliffs - Higher ledges require bigger recoil. Hit bumpers and launch upward!"
 
 [node name="Controls" type="Label" parent="UI/Margin/VBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.65, 0.75, 0.85, 1.0)
 theme_override_font_sizes/font_size = 13
-text = "[A/D] Move   [SPACE] Jump   [SHIFT] Snapback   [ESC/P] Pause"
+text = "[A/D] Move   [SPACE] Jump   [SHIFT] Dash   [W+SHIFT] Snap Upward   [ESC/P] Pause"
 
 [node name="Platforms" type="Node2D" parent="."]
 
 [node name="Platform1" type="StaticBody2D" parent="Platforms"]
-position = Vector2(220, 560)
+position = Vector2(200, 620)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform1"]
 shape = SubResource("RectangleShape2D_p1")
 
 [node name="Sprite2D" type="Sprite2D" parent="Platforms/Platform1"]
-scale = Vector2(11.875, 1.5)
+scale = Vector2(11.25, 1.5)
 texture = ExtResource("2_ground")
 
 [node name="Platform2" type="StaticBody2D" parent="Platforms"]
-position = Vector2(900, 560)
+position = Vector2(680, 480)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform2"]
 shape = SubResource("RectangleShape2D_p2")
 
 [node name="Sprite2D" type="Sprite2D" parent="Platforms/Platform2"]
-scale = Vector2(14.375, 1.5)
+scale = Vector2(11.875, 1.5)
 texture = ExtResource("2_ground")
 
 [node name="Platform3" type="StaticBody2D" parent="Platforms"]
-position = Vector2(1680, 560)
+position = Vector2(1220, 340)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform3"]
 shape = SubResource("RectangleShape2D_p3")
 
 [node name="Sprite2D" type="Sprite2D" parent="Platforms/Platform3"]
-scale = Vector2(16.875, 1.5)
+scale = Vector2(11.875, 1.5)
+texture = ExtResource("2_ground")
+
+[node name="Platform4" type="StaticBody2D" parent="Platforms"]
+position = Vector2(1800, 180)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform4"]
+shape = SubResource("RectangleShape2D_p4")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/Platform4"]
+scale = Vector2(14.375, 1.5)
 texture = ExtResource("2_ground")
 
 [node name="Bumper1" parent="." instance=ExtResource("3_bumper")]
-position = Vector2(360, 524)
+position = Vector2(340, 584)
 tension_gain = 60.0
 
 [node name="Bumper2" parent="." instance=ExtResource("3_bumper")]
-position = Vector2(1060, 524)
+position = Vector2(840, 444)
 tension_gain = 65.0
 
+[node name="Bumper3" parent="." instance=ExtResource("3_bumper")]
+position = Vector2(1380, 304)
+tension_gain = 70.0
+
 [node name="Coin1" parent="." instance=ExtResource("5_coin")]
-position = Vector2(280, 490)
+position = Vector2(250, 550)
 
 [node name="Coin2" parent="." instance=ExtResource("5_coin")]
-position = Vector2(560, 420)
+position = Vector2(480, 510)
 
 [node name="Coin3" parent="." instance=ExtResource("5_coin")]
-position = Vector2(640, 420)
+position = Vector2(720, 420)
 
 [node name="Coin4" parent="." instance=ExtResource("5_coin")]
-position = Vector2(920, 490)
+position = Vector2(1000, 380)
 
 [node name="Coin5" parent="." instance=ExtResource("5_coin")]
-position = Vector2(1360, 410)
+position = Vector2(1260, 280)
 
 [node name="Coin6" parent="." instance=ExtResource("5_coin")]
-position = Vector2(1440, 410)
+position = Vector2(1550, 220)
 
 [node name="Goal" parent="." instance=ExtResource("4_goal")]
-position = Vector2(1850, 520)
+position = Vector2(1950, 140)
 next_level_path = "res://scenes/levels/level_3.tscn"
 current_level_num = 2
 
 [node name="Player" parent="." instance=ExtResource("1_player")]
-position = Vector2(80, 510)
+position = Vector2(80, 570)

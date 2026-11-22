@@ -82,7 +82,6 @@ func _physics_process(delta: float) -> void:
 	# 2. Snap Dash State
 	if is_snapping:
 		snap_timer -= delta
-		velocity.y = min(velocity.y, 40.0)
 		if sprite:
 			sprite.scale = Vector2(1.5, 0.7)
 		if snap_timer <= 0.0:
@@ -122,7 +121,7 @@ func _physics_process(delta: float) -> void:
 			if bgm:
 				bgm.play_sfx("jump")
 
-		# 5. Snapback Forward
+		# 5. Snapback Forward / Angled Upward
 		var snap_pressed := (
 			Input.is_action_just_pressed("snap") or 
 			Input.is_action_just_pressed("ui_select") or 
@@ -157,7 +156,7 @@ func _physics_process(delta: float) -> void:
 		tension_bar.value = tension
 	if tension_label:
 		if tension >= 80.0:
-			tension_label.text = "TENSION: %d%% (MAX FUEL! PRESS SHIFT)" % int(tension)
+			tension_label.text = "TENSION: %d%% (MAX FUEL! HOLD W TO SNAP UP)" % int(tension)
 		elif tension >= 10.0:
 			tension_label.text = "TENSION: %d%% (READY TO SNAP!)" % int(tension)
 		else:
@@ -166,15 +165,28 @@ func _physics_process(delta: float) -> void:
 		score_label.text = "SCORE: %d" % score
 
 	# Pit fall or manual reset
-	if position.y > 750.0 or (Input.is_physical_key_pressed(KEY_R) and not get_tree().paused):
+	if position.y > 900.0 or (Input.is_physical_key_pressed(KEY_R) and not get_tree().paused):
 		get_tree().reload_current_scene()
 
 func execute_snap() -> void:
 	is_snapping = true
-	snap_timer = 0.35
+	snap_timer = 0.36
 	var launch_power = 500.0 + (tension / MAX_TENSION) * 950.0
-	velocity.x = facing_dir * launch_power
-	velocity.y = -120.0
+	
+	# Check for upward angle input (W or UP arrow) for vertical ascent
+	var up_pressed := (
+		Input.is_action_pressed("jump") or 
+		Input.is_action_pressed("ui_up") or 
+		Input.is_physical_key_pressed(KEY_W) or 
+		Input.is_physical_key_pressed(KEY_UP)
+	)
+	if up_pressed:
+		velocity.x = facing_dir * launch_power * 0.72
+		velocity.y = -launch_power * 0.82
+	else:
+		velocity.x = facing_dir * launch_power
+		velocity.y = -140.0
+
 	tension = 0.0
 	var bgm = get_node_or_null("/root/BGM")
 	if bgm:
