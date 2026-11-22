@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3]
+[gd_scene load_steps=13 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1_player"]
 [ext_resource type="Texture2D" path="res://assets/sprites/ground.png" id="2_ground"]
@@ -8,24 +8,31 @@
 [ext_resource type="PackedScene" path="res://scenes/enemy_walker.tscn" id="6_walker"]
 [ext_resource type="PackedScene" path="res://scenes/enemy_hopper.tscn" id="7_hopper"]
 [ext_resource type="PackedScene" path="res://scenes/enemy_flyer.tscn" id="8_flyer"]
+[ext_resource type="PackedScene" path="res://scenes/moving_platform.tscn" id="9_mp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1"]
-size = Vector2(380, 48)
+size = Vector2(400, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p2"]
-size = Vector2(400, 48)
+size = Vector2(460, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p3"]
-size = Vector2(400, 48)
+size = Vector2(460, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p4"]
-size = Vector2(400, 48)
+size = Vector2(460, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p5"]
-size = Vector2(440, 48)
+size = Vector2(600, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6"]
-size = Vector2(580, 48)
+size = Vector2(320, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p7"]
+size = Vector2(320, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p8"]
+size = Vector2(320, 48)
 
 [node name="Level10" type="Node2D"]
 
@@ -57,154 +64,178 @@ layout_mode = 2
 [node name="Title" type="Label" parent="UI/Margin/VBox"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
-text = "Level 10: Mount Apex Summit - The ultimate vertical climb from the valley to the stars!"
+text = "Level 10: The Grand Finale - Choose your destiny: the brutal ground gauntlet or the soaring skyway!"
 
 [node name="Controls" type="Label" parent="UI/Margin/VBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.65, 0.75, 0.85, 1.0)
 theme_override_font_sizes/font_size = 13
-text = "[A/D] Move   [SPACE] Jump   [SHIFT] Dash   [W+SHIFT] Snap Upward   [ESC/P] Pause"
+text = "[A/D] Move   [SPACE] Jump   [SHIFT] Dash   [W+SHIFT] High Snap   [ESC/P] Pause"
 
 [node name="Platforms" type="Node2D" parent="."]
 
 [node name="Platform1" type="StaticBody2D" parent="Platforms"]
-position = Vector2(220, 740)
+position = Vector2(240, 560)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform1"]
 shape = SubResource("RectangleShape2D_p1")
 
 [node name="Sprite2D" type="Sprite2D" parent="Platforms/Platform1"]
-scale = Vector2(11.875, 1.5)
+scale = Vector2(12.5, 1.5)
 texture = ExtResource("2_ground")
 
 [node name="Platform2" type="StaticBody2D" parent="Platforms"]
-position = Vector2(760, 520)
+position = Vector2(940, 560)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform2"]
 shape = SubResource("RectangleShape2D_p2")
 
 [node name="Sprite2D" type="Sprite2D" parent="Platforms/Platform2"]
-scale = Vector2(12.5, 1.5)
+scale = Vector2(14.375, 1.5)
 texture = ExtResource("2_ground")
 
 [node name="Platform3" type="StaticBody2D" parent="Platforms"]
-position = Vector2(1320, 280)
+position = Vector2(1700, 560)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform3"]
 shape = SubResource("RectangleShape2D_p3")
 
 [node name="Sprite2D" type="Sprite2D" parent="Platforms/Platform3"]
-scale = Vector2(12.5, 1.5)
+scale = Vector2(14.375, 1.5)
 texture = ExtResource("2_ground")
 
 [node name="Platform4" type="StaticBody2D" parent="Platforms"]
-position = Vector2(1920, 40)
+position = Vector2(2480, 560)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform4"]
 shape = SubResource("RectangleShape2D_p4")
 
 [node name="Sprite2D" type="Sprite2D" parent="Platforms/Platform4"]
-scale = Vector2(12.5, 1.5)
+scale = Vector2(14.375, 1.5)
 texture = ExtResource("2_ground")
 
 [node name="Platform5" type="StaticBody2D" parent="Platforms"]
-position = Vector2(2560, -220)
+position = Vector2(3300, 560)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform5"]
 shape = SubResource("RectangleShape2D_p5")
 
 [node name="Sprite2D" type="Sprite2D" parent="Platforms/Platform5"]
-scale = Vector2(13.75, 1.5)
+scale = Vector2(18.75, 1.5)
 texture = ExtResource("2_ground")
 
 [node name="Platform6" type="StaticBody2D" parent="Platforms"]
-position = Vector2(3280, -480)
+position = Vector2(940, 260)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform6"]
 shape = SubResource("RectangleShape2D_p6")
 
 [node name="Sprite2D" type="Sprite2D" parent="Platforms/Platform6"]
-scale = Vector2(18.125, 1.5)
+scale = Vector2(10.0, 1.5)
 texture = ExtResource("2_ground")
 
+[node name="Platform7" type="StaticBody2D" parent="Platforms"]
+position = Vector2(1700, 260)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform7"]
+shape = SubResource("RectangleShape2D_p7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/Platform7"]
+scale = Vector2(10.0, 1.5)
+texture = ExtResource("2_ground")
+
+[node name="Platform8" type="StaticBody2D" parent="Platforms"]
+position = Vector2(2480, 260)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform8"]
+shape = SubResource("RectangleShape2D_p8")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/Platform8"]
+scale = Vector2(10.0, 1.5)
+texture = ExtResource("2_ground")
+
+[node name="MovingPlatform1" parent="." instance=ExtResource("9_mp")]
+position = Vector2(540, 520)
+move_offset = Vector2(0.0, -260.0)
+cycle_time = 2.5
+
+[node name="MovingPlatform2" parent="." instance=ExtResource("9_mp")]
+position = Vector2(1320, 260)
+move_offset = Vector2(240.0, 0.0)
+cycle_time = 2.2
+
+[node name="MovingPlatform3" parent="." instance=ExtResource("9_mp")]
+position = Vector2(2080, 260)
+move_offset = Vector2(240.0, 0.0)
+cycle_time = 2.2
+
+[node name="MovingPlatform4" parent="." instance=ExtResource("9_mp")]
+position = Vector2(2860, 260)
+move_offset = Vector2(240.0, 0.0)
+cycle_time = 2.2
+
 [node name="Bumper1" parent="." instance=ExtResource("3_bumper")]
-position = Vector2(380, 704)
+position = Vector2(380, 524)
 tension_gain = 75.0
 
 [node name="Bumper2" parent="." instance=ExtResource("3_bumper")]
-position = Vector2(920, 484)
-tension_gain = 80.0
-
-[node name="Bumper3" parent="." instance=ExtResource("3_bumper")]
-position = Vector2(1480, 244)
+position = Vector2(1880, 524)
 tension_gain = 85.0
 
-[node name="Bumper4" parent="." instance=ExtResource("3_bumper")]
-position = Vector2(2080, 4)
-tension_gain = 90.0
-
-[node name="Bumper5" parent="." instance=ExtResource("3_bumper")]
-position = Vector2(2740, -256)
-tension_gain = 100.0
+[node name="Bumper3" parent="." instance=ExtResource("3_bumper")]
+position = Vector2(2660, 524)
+tension_gain = 95.0
 
 [node name="Walker1" parent="." instance=ExtResource("6_walker")]
-position = Vector2(780, 484)
+position = Vector2(860, 524)
 patrol_range = 120.0
 
 [node name="Hopper1" parent="." instance=ExtResource("7_hopper")]
-position = Vector2(1340, 244)
-jump_force = -450.0
+position = Vector2(1620, 524)
+jump_force = -440.0
 
 [node name="Flyer1" parent="." instance=ExtResource("8_flyer")]
-position = Vector2(520, 580)
+position = Vector2(1320, 480)
 patrol_range = 80.0
 
 [node name="Flyer2" parent="." instance=ExtResource("8_flyer")]
-position = Vector2(1650, 120)
-patrol_range = 90.0
-
-[node name="Flyer3" parent="." instance=ExtResource("8_flyer")]
-position = Vector2(2260, -120)
-patrol_range = 100.0
-
-[node name="Flyer4" parent="." instance=ExtResource("8_flyer")]
-position = Vector2(2940, -380)
+position = Vector2(2080, 480)
 patrol_range = 90.0
 
 [node name="Coin1" parent="." instance=ExtResource("5_coin")]
-position = Vector2(280, 670)
+position = Vector2(300, 490)
 
 [node name="Coin2" parent="." instance=ExtResource("5_coin")]
-position = Vector2(520, 520)
+position = Vector2(540, 210)
 
 [node name="Coin3" parent="." instance=ExtResource("5_coin")]
-position = Vector2(800, 440)
+position = Vector2(940, 210)
 
 [node name="Coin4" parent="." instance=ExtResource("5_coin")]
-position = Vector2(1100, 340)
+position = Vector2(1440, 210)
 
 [node name="Coin5" parent="." instance=ExtResource("5_coin")]
-position = Vector2(1360, 200)
+position = Vector2(1700, 210)
 
 [node name="Coin6" parent="." instance=ExtResource("5_coin")]
-position = Vector2(1670, 60)
+position = Vector2(2200, 210)
 
 [node name="Coin7" parent="." instance=ExtResource("5_coin")]
-position = Vector2(1950, -40)
+position = Vector2(2480, 210)
 
 [node name="Coin8" parent="." instance=ExtResource("5_coin")]
-position = Vector2(2280, -170)
+position = Vector2(2980, 210)
 
 [node name="Coin9" parent="." instance=ExtResource("5_coin")]
-position = Vector2(2760, -320)
+position = Vector2(3200, 490)
 
 [node name="Coin10" parent="." instance=ExtResource("5_coin")]
-position = Vector2(3000, -420)
+position = Vector2(3300, 490)
 
 [node name="Goal" parent="." instance=ExtResource("4_goal")]
-position = Vector2(3500, -520)
+position = Vector2(3500, 520)
 next_level_path = "res://scenes/menu.tscn"
 current_level_num = 10
 
 [node name="Player" parent="." instance=ExtResource("1_player")]
-position = Vector2(80, 690)
+position = Vector2(80, 510)
