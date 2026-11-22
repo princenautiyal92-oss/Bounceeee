@@ -20,7 +20,7 @@ config/features=PackedStringArray("4.7", "Forward Plus")
 
 [autoload]
 
-BGM="*res://scripts/bgm.gd"
+BGM="*res://scenes/bgm.tscn"
 
 [display]
 

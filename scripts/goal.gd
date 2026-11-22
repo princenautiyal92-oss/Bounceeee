@@ -7,6 +7,9 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
+		var bgm = get_node_or_null("/root/BGM")
+		if bgm:
+			bgm.play_sfx("clear")
 		if next_level_path != "":
 			get_tree().change_scene_to_file(next_level_path)
 		else:

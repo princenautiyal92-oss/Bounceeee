@@ -8,4 +8,7 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		Player.score += point_value
+		var bgm = get_node_or_null("/root/BGM")
+		if bgm:
+			bgm.play_sfx("coin")
 		queue_free()

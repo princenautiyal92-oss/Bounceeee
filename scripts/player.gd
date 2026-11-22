@@ -64,6 +64,9 @@ func _physics_process(delta: float) -> void:
 			velocity.y = JUMP_VELOCITY
 			if sprite:
 				sprite.scale = Vector2(0.7, 1.3)
+			var bgm = get_node_or_null("/root/BGM")
+			if bgm:
+				bgm.play_sfx("jump")
 
 		# 5. Snapback Forward
 		var snap_pressed := (
@@ -119,9 +122,15 @@ func execute_snap() -> void:
 	velocity.x = facing_dir * launch_power
 	velocity.y = -120.0
 	tension = 0.0
+	var bgm = get_node_or_null("/root/BGM")
+	if bgm:
+		bgm.play_sfx("snap", 1.0 + (launch_power / 1500.0) * 0.3)
 
 func take_knockback(force: Vector2, added_tension: float) -> void:
 	velocity = force
 	tension = clamp(tension + added_tension, 0.0, MAX_TENSION)
 	is_snapping = false
 	flash_timer = 0.2
+	var bgm = get_node_or_null("/root/BGM")
+	if bgm:
+		bgm.play_sfx("hit")
