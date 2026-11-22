@@ -87,7 +87,7 @@ position = Vector2(720, 420)
 
 [node name="Goal" parent="." instance=ExtResource("4_goal")]
 position = Vector2(1160, 520)
-next_level_path = "res://scenes/levels/level_1.tscn"
+next_level_path = "res://scenes/menu.tscn"
 
 [node name="Player" parent="." instance=ExtResource("1_player")]
 position = Vector2(80, 510)

@@ -1,0 +1,229 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_menu_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player.png" id="2_player_tex"]
+[ext_resource type="Texture2D" path="res://assets/sprites/bumper.png" id="3_bumper_tex"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_glass"]
+bg_color = Color(0.08, 0.12, 0.18, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.22, 0.74, 0.97, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.02, 0.04, 0.08, 0.75)
+shadow_size = 24
+shadow_offset = Vector2(0, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_primary"]
+bg_color = Color(0.01, 0.52, 0.78, 1)
+border_width_bottom = 3
+border_color = Color(0.01, 0.38, 0.58, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_primary_hover"]
+bg_color = Color(0.22, 0.74, 0.97, 1)
+border_width_bottom = 3
+border_color = Color(0.01, 0.52, 0.78, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_secondary"]
+bg_color = Color(0.14, 0.18, 0.26, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.28, 0.36, 0.5, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_secondary_hover"]
+bg_color = Color(0.2, 0.26, 0.38, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.22, 0.74, 0.97, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu_script")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.07, 0.11, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GlassPanel" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(460, 480)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_glass")
+
+[node name="Margin" type="MarginContainer" parent="CenterContainer/GlassPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 36
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 36
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/GlassPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="CenterContainer/GlassPanel/Margin/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.22, 0.74, 0.97, 1)
+theme_override_font_sizes/font_size = 46
+text = "SNAPBACK"
+horizontal_alignment = 1
+
+[node name="Tagline" type="Label" parent="CenterContainer/GlassPanel/Margin/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.62, 0.04, 1)
+theme_override_font_sizes/font_size = 14
+text = "SETBACKS ARE YOUR FUEL"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="CenterContainer/GlassPanel/Margin/VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="CenterContainer/GlassPanel/Margin/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_primary")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_primary_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_primary")
+text = "START GAME"
+
+[node name="HowButton" type="Button" parent="CenterContainer/GlassPanel/Margin/VBoxContainer"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.92, 0.96, 1)
+theme_override_colors/font_hover_color = Color(0.22, 0.74, 0.97, 1)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_secondary")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_secondary_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_secondary")
+text = "HOW TO PLAY"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/GlassPanel/Margin/VBoxContainer"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.92, 0.96, 1)
+theme_override_colors/font_hover_color = Color(0.95, 0.35, 0.35, 1)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_secondary")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_secondary_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_secondary")
+text = "QUIT"
+
+[node name="Spacer2" type="Control" parent="CenterContainer/GlassPanel/Margin/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="FooterTip" type="Label" parent="CenterContainer/GlassPanel/Margin/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.62, 0.72, 1)
+theme_override_font_sizes/font_size = 12
+text = "[M] Mute Music   [R] Quick Reset"
+horizontal_alignment = 1
+
+[node name="PlayerPreview" type="Sprite2D" parent="."]
+position = Vector2(260, 360)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_player_tex")
+
+[node name="BumperPreview" type="Sprite2D" parent="."]
+position = Vector2(1020, 360)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("3_bumper_tex")
+
+[node name="HowToPlayModal" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -220.0
+offset_right = 280.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_glass")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HowToPlayModal"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="ModalTitle" type="Label" parent="HowToPlayModal/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.22, 0.74, 0.97, 1)
+theme_override_font_sizes/font_size = 22
+text = "HOW TO PLAY"
+horizontal_alignment = 1
+
+[node name="RulesText" type="Label" parent="HowToPlayModal/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.9, 0.95, 1)
+theme_override_font_sizes/font_size = 14
+text = "1. Bumpers and moving enemies knock you backward.
+
+2. Knockback distance charges your Tension meter (0% to 100%).
+
+3. Press [SHIFT] to release an explosive Snapback forward dash!
+
+4. Some gaps are too wide to cross at normal jump. You MUST take hits on purpose to store fuel!
+
+5. Collect gold coins and snap through enemies for bonus points."
+autowrap_mode = 2
+
+[node name="CloseButton" type="Button" parent="HowToPlayModal/VBoxContainer"]
+custom_minimum_size = Vector2(180, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_primary")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_primary_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_primary")
+text = "GOT IT"
